@@ -88,5 +88,36 @@
 
     setInterval(createHeart, 300);
   </script>
+  <!-- 倒计时显示区域 -->
+<div id="countdown" style="font-size: 1.5em; margin-top: 20px; color: #d6336c;"></div>
+
+<script>
+  // 设置目标日期
+  const targetDate = new Date("2025-12-07T00:00:00");
+
+  function updateCountdown() {
+    const now = new Date();
+    const timeLeft = targetDate - now;
+
+    if (timeLeft <= 0) {
+      document.getElementById("countdown").innerText = "🎉 今天是我们的特别日子！";
+      clearInterval(timer);
+      return;
+    }
+
+    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((timeLeft / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((timeLeft / (1000 * 60)) % 60);
+    const seconds = Math.floor((timeLeft / 1000) % 60);
+
+    document.getElementById("countdown").innerText =
+      `距离我们的特别日子还有：${days}天 ${hours}小时 ${minutes}分钟 ${seconds}秒`;
+  }
+
+  // 每秒更新一次倒计时
+  const timer = setInterval(updateCountdown, 1000);
+  updateCountdown(); // 初始化调用
+</script>
+
 </body>
 </html>
